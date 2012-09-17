@@ -20,6 +20,14 @@
     font-size:89%;
 }
 
+.post .expand {
+    color: #1168CC;
+}
+
+.reply {
+    margin-left:30px;
+}
+
 #zero_click_abstract{
     margin-right: 0px !important;
     padding-left: 0px !important;
