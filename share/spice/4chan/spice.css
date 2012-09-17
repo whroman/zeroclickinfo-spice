@@ -24,8 +24,10 @@
     color: #1168CC;
 }
 
-.reply {
-    margin-left:30px;
+#replies {
+    border-left: 2px solid #808080;
+    margin: 0px 0px 12px 26px;
+    padding-left: 2px;
 }
 
 #zero_click_abstract{

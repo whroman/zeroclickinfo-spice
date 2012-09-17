@@ -22,8 +22,7 @@ function ddg_spice_4chan(response) {
                     + '... <span class="expand" id="expand_' + post.no + '">More</span>';
         }
         console.log(post);
-        answer += '<div class="post highlight_zero_click1 highlight_zero_click_wrapper'
-                + (i > 0 ? ' reply' : '') + '">'
+        answer += '<div class="post highlight_zero_click1 highlight_zero_click_wrapper">'
                 + (post.tim ? '<img src="/iu/?u=http://images.4chan.org/b/src/'
                                     + post.tim + post.ext + '">' : '' )
                 + '<div class="info">'
@@ -33,9 +32,10 @@ function ddg_spice_4chan(response) {
                 + comment
                 + '</div>'
                 + '</div>';
+        if (i == 0) { answer += '<div id="replies">'; }
     }
 
-    answer += '</div>';
+    answer += '</div></div>';
 
 
 	var items = new Array();
