@@ -1,11 +1,11 @@
 function ddg_spice_4chan(response) {
-    var query = decodeURIComponent(rq);
-    query = query.replace(/4chan/, '');
-
     var posts = response.posts;
     var answer = '<div>';
     var expandLinks = [];
     var fullComment = {};
+
+    var thread = posts[0].no;
+    var board = decodeURIComponent(rq).replace(/4chan| |\//g, '').replace(thread, '');
 
     for (var i in posts) {
         var post = posts[i];
@@ -41,7 +41,7 @@ function ddg_spice_4chan(response) {
 	var items = new Array();
 	items[0] = new Array();
     items[0]['a'] = answer;
-	items[0]['h'] = query + " (4chan)";
+	items[0]['h'] = "/" + board + "/" + thread + " (4chan)";
 	items[0]['s'] = '4chan';
 	items[0]['u'] = 'https://4chan.org';
     items[0]["force_big_header"] = true;
