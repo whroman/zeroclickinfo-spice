@@ -36,7 +36,12 @@ function ddg_spice_octopart (api_result) {
     //     return;
     // }
 
-    var isMobile = $('.is-mobile').length;
+    var isMobile = $('.is-mobile').length,
+        getPrice = function(item) {
+            if (!item.item || !item.item.avg_price || !item.item.avg_price[0] || !item.item.avg_price[1]) { return '' };
+            
+            return item.item.avg_price[1] + ' ' + item.item.avg_price[0].toFixed(2);
+        };
 
     Spice.add({
         id: 'octopart',
@@ -53,19 +58,19 @@ function ddg_spice_octopart (api_result) {
             var img = DDG.getProperty(item, "item.images.0.url_90px");
             var desc_length = 60;
             var description = (isMobile ? 
-                Handlebars.helpers.ellipsis(DDG.strip_html(item.item.short_description), desc_length) :
-                DDG.strip_html(item.item.short_description));
+                Handlebars.helpers.ellipsis(DDG.strip_html(item.short_description), desc_length) :
+                DDG.strip_html(item.short_description));
 
             return {
-                brand: item.item.manufacturer.displayname,
-                price: item.item.avg_price[1] + ' ' + item.item.avg_price[0].toFixed(2),
+                brand: item.item && item.item.manufacturer && item.item.manufacturer.displayname,
+                price: getPrice(item),
                 img: img,
                 img_m: img,
-				url: item.item.detail_url,
-                title: DDG.strip_html(item.item.mpn).toUpperCase(),
-                heading: DDG.strip_html(item.item.mpn).toUpperCase(),
+				url: item.item && item.item.detail_url,
+                title: DDG.strip_html(item.mpn).toUpperCase(),
+                heading: DDG.strip_html(item.mpn).toUpperCase(),
                 description: description,
-                datasheet: item.item.datasheets[0].url
+                datasheet: item.item && item.item.datasheets && item.item.datasheets[0] && item.item.datasheets[0].url
             };
         },
 
